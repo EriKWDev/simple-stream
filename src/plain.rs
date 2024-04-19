@@ -82,6 +82,10 @@ where
                 }
                 None => {}
             };
+
+            if num_read == 0 {
+                return Err(Error::new(ErrorKind::UnexpectedEof, "Read 0 bytes"));
+            }
         }
     }
 
@@ -118,6 +122,11 @@ where
 
             let num_read = read_result.unwrap();
             trace!("Read {} byte(s)", num_read);
+
+            if num_read == 0 {
+                return Err(Error::new(ErrorKind::UnexpectedEof, "Read 0 bytes"));
+            }
+
             self.rx_buf.extend_from_slice(&buf[0..num_read]);
         }
 
