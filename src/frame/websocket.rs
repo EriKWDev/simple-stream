@@ -104,13 +104,13 @@ impl FrameBuilder for WebSocketFrameBuilder {
             }
         }
 
-        trace!("{}", frame.op_type());
+        
 
         // Payload masked (If from client, must always be true)
         let mask_bit = 0b1000_0000 & buf[1];
         frame.header.mask = mask_bit > 0;
 
-        trace!("Frame masked: {}", frame.header.mask);
+        
 
         // Payload data length
         let payload_len = 0b0111_1111 & buf[1];
@@ -140,7 +140,7 @@ impl FrameBuilder for WebSocketFrameBuilder {
             next_offset = 10;
         }
 
-        trace!("Payload length: {}", frame.header.payload_len);
+        
 
         // Optional masking key
         if frame.header.mask {

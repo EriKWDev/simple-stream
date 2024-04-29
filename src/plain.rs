@@ -56,7 +56,6 @@ where
         // Empty anything that is in our buffer already from any previous reads
         match FB::from_bytes(&mut self.rx_buf) {
             Some(boxed_frame) => {
-                debug!("Complete frame read");
                 return Ok(boxed_frame);
             }
             None => {}
@@ -71,12 +70,12 @@ where
             }
 
             let num_read = read_result.unwrap();
-            trace!("Read {} byte(s)", num_read);
+            
             self.rx_buf.extend_from_slice(&buf[0..num_read]);
 
             match FB::from_bytes(&mut self.rx_buf) {
                 Some(boxed_frame) => {
-                    debug!("Complete frame read");
+                    
                     return Ok(boxed_frame);
                 }
                 None => {}
@@ -96,7 +95,7 @@ where
             return Err(err);
         }
 
-        trace!("Wrote {} byte(s)", write_result.unwrap());
+        
 
         Ok(())
     }
@@ -120,7 +119,7 @@ where
             }
 
             let num_read = read_result.unwrap();
-            trace!("Read {} byte(s)", num_read);
+            
 
             if num_read == 0 {
                 return Err(Error::new(ErrorKind::UnexpectedEof, "Read 0 bytes"));
@@ -131,12 +130,12 @@ where
 
         let mut ret_buf = Vec::<Box<dyn Frame>>::with_capacity(5);
         while let Some(boxed_frame) = FB::from_bytes(&mut self.rx_buf) {
-            debug!("Complete frame read");
+            
             ret_buf.push(boxed_frame);
         }
 
         if ret_buf.len() > 0 {
-            debug!("Read {} frame(s)", ret_buf.len());
+            
             return Ok(ret_buf);
         }
 

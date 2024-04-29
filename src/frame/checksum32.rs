@@ -67,7 +67,7 @@ impl FrameBuilder for Checksum32FrameBuilder {
             return None;
         }
 
-        trace!("Payload length: {}", payload_len);
+        
 
         let mut checksum: u32 = 0;
         for x in 4..(payload_len + 4) {

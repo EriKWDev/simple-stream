@@ -59,23 +59,15 @@
 #[macro_use]
 extern crate bitflags;
 extern crate libc;
-#[macro_use]
-extern crate log;
-#[cfg(feature = "openssl")]
-extern crate openssl;
 
 pub mod frame;
 mod plain;
-#[cfg(feature = "openssl")]
-mod secure;
 
 use std::io;
 
 use frame::Frame;
 
 pub use plain::*;
-#[cfg(feature = "openssl")]
-pub use secure::*;
 
 /// The `Blocking` trait provides method definitions for use with blocking streams.
 pub trait Blocking {
