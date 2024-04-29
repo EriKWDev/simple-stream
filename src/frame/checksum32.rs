@@ -83,7 +83,7 @@ impl FrameBuilder for Checksum32FrameBuilder {
         maybe_checksum |= buf[payload_len + 4 + 3] as u32;
 
         if maybe_checksum != checksum {
-            error!("Checksum incorrect. Emptying passed buffer");
+            
             *buf = Vec::new();
             return None;
         }

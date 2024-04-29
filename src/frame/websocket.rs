@@ -99,7 +99,7 @@ impl FrameBuilder for WebSocketFrameBuilder {
                 frame.header.op_code = op_code;
             }
             None => {
-                error!("Invalid OpCode bits: {:#b}", buf[0]);
+                
                 return None;
             }
         }

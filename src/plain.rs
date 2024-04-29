@@ -159,12 +159,6 @@ where
             return Err(Error::new(ErrorKind::Other, "Write returned zero"));
         }
 
-        trace!(
-            "Tried to write {} byte(s) wrote {} byte(s)",
-            out_buf.len(),
-            num_written
-        );
-
         if num_written < out_buf.len() {
             let out_buf_len = out_buf.len();
             self.tx_buf
