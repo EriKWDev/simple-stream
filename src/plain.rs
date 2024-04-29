@@ -8,7 +8,6 @@
 use std::io::{Error, ErrorKind, Read, Write};
 use std::marker::PhantomData;
 use std::mem;
-use std::os::unix::io::{AsRawFd, RawFd};
 
 // use libc;
 // use errno::errno;
@@ -176,15 +175,5 @@ where
         }
 
         Ok(())
-    }
-}
-
-impl<S, FB> AsRawFd for Plain<S, FB>
-where
-    S: Read + Write + AsRawFd,
-    FB: FrameBuilder,
-{
-    fn as_raw_fd(&self) -> RawFd {
-        self.inner.as_raw_fd()
     }
 }
