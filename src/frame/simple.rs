@@ -60,10 +60,6 @@ impl FrameBuilder for SimpleFrameBuilder {
                 frame.start_guard = start_guard;
             }
             None => {
-                error!(
-                    "First byte was not expected start byte. Buffer corrupted?: {:#b}",
-                    buf[0]
-                );
             }
         }
 
@@ -90,10 +86,6 @@ impl FrameBuilder for SimpleFrameBuilder {
                 frame.end_guard = end_guard;
             }
             None => {
-                error!(
-                    "Last byte was not expected end byte. Buffer corrupted? {:#b}",
-                    buf[payload_len + 3]
-                );
                 return None;
             }
         }
